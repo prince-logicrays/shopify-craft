@@ -21,55 +21,59 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-      // Function to display form data from localStorage
-      function displayFormData() {
-        var formDataJSON = localStorage.getItem('formData');
-        if (formDataJSON) {
-          var formData = JSON.parse(formDataJSON);
-          var formDataHTML = '<h2>Form Data:</h2>';
-          formDataHTML += '<ul>';
-          formDataHTML += '<li><strong>Name:</strong> ' + formData.name + '</li>';
-          formDataHTML += '<li><strong>Email:</strong> ' + formData.email + '</li>';
-          formDataHTML += '<li><strong>Message:</strong> ' + formData.message + '</li>';
-          formDataHTML += '</ul>';
-          formDataDisplay.innerHTML = formDataHTML;
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to display form data from localStorage
+        function displayFormData() {
+          var formDataJSON = localStorage.getItem('formData');
+          if (formDataJSON) {
+            var formData = JSON.parse(formDataJSON);
+            var formDataHTML = '<h2>Form Data:</h2>';
+            formDataHTML += '<ul>';
+            formDataHTML += '<li><strong>Name:</strong> ' + formData.name + '</li>';
+            formDataHTML += '<li><strong>Email:</strong> ' + formData.email + '</li>';
+            formDataHTML += '<li><strong>Message:</strong> ' + formData.message + '</li>';
+            formDataHTML += '</ul>';
+            formDataDisplay.innerHTML = formDataHTML;
+          }
         }
+
+
+      // Function to open the modal
+      function openModal() {
+        contactModal.style.display = 'block';
       }
 
+      // Function to close the modal
+      function closeModal() {
+        contactModal.style.display = 'none';
+      }
 
-    // Function to open the modal
-    function openModal() {
-      contactModal.style.display = 'block';
-    }
+      // Event listener to open the modal
+      openModalBtn.addEventListener('click', openModal);
 
-    // Function to close the modal
-    function closeModal() {
-      contactModal.style.display = 'none';
-    }
+      // Event listener to close the modal
+      closeModalBtn.addEventListener('click', closeModal);
 
-    // Event listener to open the modal
-    openModalBtn.addEventListener('click', openModal);
+      // Event listener for form submission
+      contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
 
-    // Event listener to close the modal
-    closeModalBtn.addEventListener('click', closeModal);
+        // Collect form data
+        var formData = {
+          name: document.getElementById('name').value,
+          email: document.getElementById('email').value
+        };
 
-    // Event listener for form submission
-    contactForm.addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent default form submission
+        // Store form data in session storage (for temporary storage)
+        sessionStorage.setItem('formData', JSON.stringify(formData));
 
-      // Collect form data
-      var formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value
-      };
+          displayFormData();
+  closeModal();
 
-      // Store form data in session storage (for temporary storage)
-      sessionStorage.setItem('formData', JSON.stringify(formData));
-      // Redirect to another custom page
-      // window.location.href = '/pages/display-form-data'; // Change to your target custom page URL
+        // Redirect to another custom page
+        // window.location.href = '/pages/display-form-data'; // Change to your target custom page URL
+      });
     });
-  });
 </script>
 
 <style>
