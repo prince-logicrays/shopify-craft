@@ -55,26 +55,8 @@
 
       // Collect form data
       var formData = new FormData(contactForm);
+      console.log(formData);
 
-      // Example: Send form data via AJAX (replace URL with your endpoint)
-      fetch('/submit_custom_form.php', {
-        method: 'POST',
-        body: formData
-      })
-      .then(function(response) {
-        if (response.ok) {
-          // Form submitted successfully
-          closeModal(); // Close modal on success
-          alert('Form submitted successfully!'); // Show success message (replace with your own notification)
-        } else {
-          // Error handling for failed submission
-          alert('Form submission failed. Please try again.'); // Show error message (replace with your own notification)
-        }
-      })
-      .catch(function(error) {
-        console.error('Error submitting form:', error);
-        alert('An error occurred. Please try again.'); // Show generic error message (replace with your own notification)
-      });
     });
   });
 </script>
