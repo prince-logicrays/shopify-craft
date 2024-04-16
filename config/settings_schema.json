@@ -4,15 +4,15 @@
     "theme_name": "Craft",
     "theme_version": "13.0.1",
     "theme_author": "Shopify",
-    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
-    "theme_support_url": "https://support.shopify.com/"
+    "theme_documentation_url": "https:\/\/help.shopify.com\/manual\/online-store\/themes",
+    "theme_support_url": "https:\/\/support.shopify.com\/"
   },
   {
     "name": "Color Swatches",
     "settings": [
       {
         "type": "paragraph",
-        "content": "Support WebSensePro by [Subscribing our Channel](https://youtube.com/@websensepro?sub_confirmation=1)"
+        "content": "Support WebSensePro by [Subscribing our Channel](https:\/\/youtube.com\/@websensepro?sub_confirmation=1)"
       },
       {
         "type": "text",
@@ -30,8 +30,14 @@
         "id": "swatchType",
         "label": "Swatch type",
         "options": [
-          { "value": "color", "label": "Color" },
-          { "value": "variantImage", "label": "Variant image" }
+          {
+            "value": "color",
+            "label": "Color"
+          },
+          {
+            "value": "variantImage",
+            "label": "Variant image"
+          }
         ],
         "default": "color"
       },
@@ -45,17 +51,29 @@
       },
       {
         "type": "paragraph",
-        "content": "You can also add [image files](/admin/content/files?selectedView=all&media_type=Image) instead of using colors, in lowercase with spaces replaced by hyphens. Example: Green kaki: green-kaki.png"
+        "content": "You can also add [image files](\/admin\/content\/files?selectedView=all&media_type=Image) instead of using colors, in lowercase with spaces replaced by hyphens. Example: Green kaki: green-kaki.png"
       },
       {
         "type": "select",
         "id": "swatchStyle",
         "label": "Swatch style",
         "options": [
-          { "value": "round", "label": "Round" },
-          { "value": "square", "label": "Square" },
-          { "value": "square-round-corners", "label": "Square round corners" },
-          { "value": "portrait", "label": "Portrait" }
+          {
+            "value": "round",
+            "label": "Round"
+          },
+          {
+            "value": "square",
+            "label": "Square"
+          },
+          {
+            "value": "square-round-corners",
+            "label": "Square round corners"
+          },
+          {
+            "value": "portrait",
+            "label": "Portrait"
+          }
         ],
         "default": "round",
         "info": "Portrait mode is only available for the variant image type."
@@ -1125,7 +1143,10 @@
   {
     "name": "t:settings_schema.popups.name",
     "settings": [
-      { "type": "paragraph", "content": "t:settings_schema.popups.paragraph" },
+      {
+        "type": "paragraph",
+        "content": "t:settings_schema.popups.paragraph"
+      },
       {
         "type": "header",
         "content": "t:settings_schema.global.settings.header__border.content"
