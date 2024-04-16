@@ -59,7 +59,8 @@
 
     // Display form data (for demonstration)
     formData.forEach(function(value, key) {
-      console.log(key + ": " + value);
+      formDataHTML += '<p><strong>' + key + ':</strong> ' + value + '</p>';
+      formDataDisplay.innerHTML = formDataHTML;
     });
   });
 </script>
