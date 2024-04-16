@@ -23,43 +23,58 @@
 </div>
 
 <script>
-    // Get the modal
-  var modal = document.getElementById("myModal");
+    document.addEventListener('DOMContentLoaded', function() {
+    // Get modal elements
+    var modal = document.getElementById('contactModal');
+    var openModalBtn = document.getElementById('openModalBtn');
+    var closeModalBtn = document.getElementById('closeModalBtn');
+    var contactForm = document.getElementById('contactForm');
 
-  // Get the button that opens the modal
-  var btn = document.getElementById("myBtn");
-
-  // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
-
-  // When the user clicks the button, open the modal
-  btn.onclick = function() {
-    modal.style.display = "block";
-  }
-
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function() {
-    modal.style.display = "none";
-  }
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
+    // Open modal function
+    function openModal() {
+      modal.style.display = 'block';
     }
-  }
 
-  // Handle form submission
-  var contactForm = document.getElementById("contactForm");
-  contactForm.addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent default form submission
+    // Close modal function
+    function closeModal() {
+      modal.style.display = 'none';
+    }
 
-    // Get form data
-    var formData = new FormData(contactForm);
+    // Event listeners to open/close modal
+    openModalBtn.addEventListener('click', openModal);
+    closeModalBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', function(event) {
+      if (event.target == modal) {
+        closeModal();
+      }
+    });
 
-    // Display form data (for demonstration)
-    formData.forEach(function(value, key) {
-      console.log(key + ": " + value);
+    // Handle form submission
+    contactForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Collect form data
+      var formData = new FormData(contactForm);
+
+      // Example: Send form data via AJAX (replace URL with your endpoint)
+      fetch('/submit_custom_form.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(function(response) {
+        if (response.ok) {
+          // Form submitted successfully
+          closeModal(); // Close modal on success
+          alert('Form submitted successfully!'); // Show success message (replace with your own notification)
+        } else {
+          // Error handling for failed submission
+          alert('Form submission failed. Please try again.'); // Show error message (replace with your own notification)
+        }
+      })
+      .catch(function(error) {
+        console.error('Error submitting form:', error);
+        alert('An error occurred. Please try again.'); // Show generic error message (replace with your own notification)
+      });
     });
   });
 </script>
