@@ -1,12 +1,10 @@
 <!-- Button to open the modal -->
-<button id="myBtn">Open Contact Form</button>
-<div id="formDataDisplay"></div>
+<button id="openModalBtn">Open Contact Form</button>
 
 <!-- The Modal -->
-<div id="myModal" class="modal">
-  <!-- Modal content -->
+<div id="contactModal" class="modal">
   <div class="modal-content">
-    <span class="close">&times;</span>
+    <span id="closeModalBtn" class="close">&times;</span>
     <h2>Contact Us</h2>
     <form id="contactForm">
       <label for="name">Name:</label>
@@ -23,49 +21,48 @@
   </div>
 </div>
 
+<!-- Container to display form data -->
+<div id="formDataDisplay"></div>
+
 <script>
-      document.addEventListener('DOMContentLoaded', function() {
-    var contactForm = document.getElementById('contactForm');
-    var formDataDisplay = document.getElementById('formDataDisplay');
+    // Get the modal
+  var modal = document.getElementById("myModal");
 
-    // Event listener for form submission
-    contactForm.addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent default form submission
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn");
 
-      // Collect form data using FormData
-      var formData = new FormData(contactForm);
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
 
-      // Create an empty string to store form data HTML
-      var formDataHTML = '';
+  // When the user clicks the button, open the modal
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
 
-      // Iterate over each key-value pair in the form data
-      formData.forEach(function(value, key) {
-        // Append HTML to formDataHTML string
-        formDataHTML += '<p><strong>' + key + ':</strong> ' + value + '</p>';
-      });
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
 
-      // Display the form data HTML inside the formDataDisplay element
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  // Handle form submission
+  var contactForm = document.getElementById("contactForm");
+  contactForm.addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Get form data
+    var formData = new FormData(contactForm);
+
+    // Display form data (for demonstration)
+    formData.forEach(function(value, key) {
+      formDataHTML += '<p><strong>' + key + ':</strong> ' + value + '</p>';
       formDataDisplay.innerHTML = formDataHTML;
-
-      // Optionally: Send form data to a server via AJAX
-      // Example:
-      // fetch('/submit_custom_form.php', {
-      //   method: 'POST',
-      //   body: formData
-      // })
-      // .then(response => {
-      //   if (response.ok) {
-      //     console.log('Form submitted successfully');
-      //   } else {
-      //     console.error('Form submission failed');
-      //   }
-      // })
-      // .catch(error => {
-      //   console.error('Error submitting form:', error);
-      // });
-
-      // Reset form fields (optional)
-      contactForm.reset();
     });
   });
 </script>
