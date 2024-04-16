@@ -69,13 +69,13 @@
 
         // Collect form data using FormData
         var formData = new FormData(contactForm);
+  console.log(formDataObject);
 
         // Convert FormData to plain object
         var formDataObject = {};
         formData.forEach(function(value, key) {
           formDataObject[key] = value;
         });
-  console.log(formDataObject);
         // Save form data to localStorage
         localStorage.setItem('formData', JSON.stringify(formDataObject));
 
