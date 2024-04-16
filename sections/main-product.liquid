@@ -91,15 +91,62 @@
                 >
                   {{- block.settings.text -}}
                 </p>
+
+              {%- when 'wishlist' -%}
+                {% if settings['enable-wishlist'] %}
+                  <button onclick="toggleWishlist()" class="wishlist_button">
+                    <svg width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0" fill="none" width="24" height="24"/>
+
+                      <g>
+
+                      <path d="M16.5 4.5c2.206 0 4 1.794 4 4 0 4.67-5.543 8.94-8.5 11.023C9.043 17.44 3.5 13.17 3.5 8.5c0-2.206 1.794-4 4-4 1.298 0 2.522.638 3.273 1.706L12 7.953l1.227-1.746c.75-1.07 1.975-1.707 3.273-1.707m0-1.5c-1.862 0-3.505.928-4.5 2.344C11.005 3.928 9.362 3 7.5 3 4.462 3 2 5.462 2 8.5c0 5.72 6.5 10.438 10 12.85 3.5-2.412 10-7.13 10-12.85C22 5.462 19.538 3 16.5 3z"/>
+
+                      </g>
+                    </svg>
+                  </button>
+                {% endif %}
+
               {%- when 'title' -%}
                 <div class="product__title" {{ block.shopify_attributes }}>
-                  <h1>{{ product.title | escape }}</h1>
+                  <h1 id="custom-title">{{ product.title | escape }}</h1>
                   <a href="{{ product.url }}" class="product__title">
                     <h2 class="h1">
                       {{ product.title | escape }}
                     </h2>
                   </a>
                 </div>
+                <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      // Get all radio buttons for color selection
+                      const colorRadioButtons = document.querySelectorAll('input[type="radio"][name="Color"]');
+                      // Add event listener to each radio button
+                      colorRadioButtons.forEach(radioButton => {
+                          radioButton.addEventListener('change', function() {
+                              // Get the selected color option
+                              const selectedColor = radioButton.value;
+                              // Update the product title based on the selected color
+                              updateProductTitle(selectedColor);
+                          });
+                      });
+                  });
+
+                  function updateProductTitle(selectedColor) {
+                      // Get the product title element
+                      const productTitleElement = document.getElementById('custom-title');
+                      if (productTitleElement) {
+                          // Get the current product title text content
+                          let currentTitle = productTitleElement.textContent.trim();
+                          // Split the current title by the last occurrence of ' - ' to separate the base title from the color
+                          const lastIndex = currentTitle.lastIndexOf(' - ');
+                          let baseTitle = currentTitle.slice(0, lastIndex);
+                          // Create the new product title with the updated color
+                          let newTitle = baseTitle + ' - ' + selectedColor;
+                          // Update the product title element with the new title
+                          productTitleElement.textContent = newTitle;
+                      }
+                  }
+                  </script>
               {%- when 'price' -%}
                 <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',
@@ -462,6 +509,9 @@
                   section_id: section.id,
                   show_pickup_availability: true
                 -%}
+
+              {% include 'my-popup' %}
+
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">
@@ -779,6 +829,10 @@
   "tag": "section",
   "class": "section",
   "blocks": [
+    {
+      "type": "wishlist",
+      "name": "wishlist"
+    },
     {
       "type": "@app"
     },
