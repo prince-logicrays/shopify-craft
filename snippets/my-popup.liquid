@@ -1,3 +1,5 @@
+<!-- Custom Popup Form HTML -->
+
 <!-- Button to open the modal -->
 <button id="openModalBtn">Open Contact Form</button>
 
@@ -13,89 +15,55 @@
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required><br>
       <br>
-      <label for="message">Message:</label><br>
-      <textarea id="message" name="message" rows="4" required></textarea><br>
-      <br>
       <button type="submit">Submit</button>
     </form>
   </div>
 </div>
 
-<!-- Container to display form data -->
-<div id="formDataDisplay"></div>
-
 <script>
-      document.addEventListener('DOMContentLoaded', function() {
-      var openModalBtn = document.getElementById('openModalBtn');
-      var closeModalBtn = document.getElementById('closeModalBtn');
-      var contactModal = document.getElementById('contactModal');
-      var contactForm = document.getElementById('contactForm');
-      var formDataDisplay = document.getElementById('formDataDisplay');
-  2
-      // Function to open the modal
-      function openModal() {
-        contactModal.style.display = 'block';
-      }
+  document.addEventListener('DOMContentLoaded', function() {
+    var openModalBtn = document.getElementById('openModalBtn');
+    var closeModalBtn = document.getElementById('closeModalBtn');
+    var contactModal = document.getElementById('contactModal');
+    var contactForm = document.getElementById('contactForm');
 
-      // Function to close the modal
-      function closeModal() {
-        contactModal.style.display = 'none';
-      }
+    // Function to open the modal
+    function openModal() {
+      contactModal.style.display = 'block';
+    }
 
-      // Function to display form data from localStorage
-      function displayFormData() {
-        var formDataJSON = localStorage.getItem('formData');
-        if (formDataJSON) {
-          var formData = JSON.parse(formDataJSON);
-          var formDataHTML = '<h2>Form Data:</h2>';
-          formDataHTML += '<ul>';
-          formDataHTML += '<li><strong>Name:</strong> ' + formData.name + '</li>';
-          formDataHTML += '<li><strong>Email:</strong> ' + formData.email + '</li>';
-          formDataHTML += '<li><strong>Message:</strong> ' + formData.message + '</li>';
-          formDataHTML += '</ul>';
-          formDataDisplay.innerHTML = formDataHTML;
-        }
-      }
+    // Function to close the modal
+    function closeModal() {
+      contactModal.style.display = 'none';
+    }
 
-      // Event listener to open the modal
-      openModalBtn.addEventListener('click', openModal);
+    // Event listener to open the modal
+    openModalBtn.addEventListener('click', openModal);
 
-      // Event listener to close the modal
-      closeModalBtn.addEventListener('click', closeModal);
+    // Event listener to close the modal
+    closeModalBtn.addEventListener('click', closeModal);
 
-      // Event listener for form submission
-      contactForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
+    // Event listener for form submission
+    contactForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
 
-        // Collect form data using FormData
-        var formData = new FormData(contactForm);
-        console.log(formData);
+      // Collect form data
+      var formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value
+      };
 
-        // Convert FormData to plain object
-        var formDataObject = {};
-        formData.forEach(function(value, key) {
-          formDataObject[key] = value;
-        });
-        // Save form data to localStorage
-        localStorage.setItem('formData', JSON.stringify(formDataObject));
+      // Store form data in session storage (for temporary storage)
+      sessionStorage.setItem('formData', JSON.stringify(formData));
 
-        // Display form data
-        displayFormData();
-
-        // Close the modal after form submission
-        closeModal();
-
-        // Reset form fields (optional)
-        contactForm.reset();
-      });
-
-      // Display form data on page load
-      displayFormData();
+      // Redirect to another custom page
+      window.location.href = '/pages/display-form-data'; // Change to your target custom page URL
     });
+  });
 </script>
 
 <style>
-  /* The Modal (hidden by default) */
+  /* Styles for modal */
   .modal {
     display: none;
     position: fixed;
@@ -108,7 +76,6 @@
     background-color: rgba(0, 0, 0, 0.5);
   }
 
-  /* Modal Content/Box */
   .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
@@ -118,7 +85,6 @@
     max-width: 600px;
   }
 
-  /* Close Button */
   .close {
     color: #aaa;
     float: right;
