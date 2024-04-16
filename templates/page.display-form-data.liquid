@@ -1,19 +1,10 @@
-<!-- Display Form Data HTML -->
+{% comment %}
+  Template: custom-form-data
+  Purpose: Handle form data submission and display
+{% endcomment %}
 
-<div id="formDataDisplay"></div>
+{% assign formData = request.form_params %}
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Retrieve form data from session storage
-    var formDataJSON = sessionStorage.getItem('formData');
-    if (formDataJSON) {
-      var formData = JSON.parse(formDataJSON);
-
-      // Display form data
-      var formDataDisplay = document.getElementById('formDataDisplay');
-      formDataDisplay.innerHTML = '<h2>Form Data:</h2>' +
-                                   '<p><strong>Name:</strong> ' + formData.name + '</p>' +
-                                   '<p><strong>Email:</strong> ' + formData.email + '</p>';
-    }
-  });
-</script>
+<h1>Form Data Received</h1>
+<p><strong>Name:</strong> {{ formData.name }}</p>
+<p><strong>Email:</strong> {{ formData.email }}</p>
