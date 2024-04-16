@@ -21,45 +21,45 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var openModalBtn = document.getElementById('openModalBtn');
-    var closeModalBtn = document.getElementById('closeModalBtn');
-    var contactModal = document.getElementById('contactModal');
-    var contactForm = document.getElementById('contactForm');
+    document.addEventListener('DOMContentLoaded', function() {
+      var openModalBtn = document.getElementById('openModalBtn');
+      var closeModalBtn = document.getElementById('closeModalBtn');
+      var contactModal = document.getElementById('contactModal');
+      var contactForm = document.getElementById('contactForm');
 
-    // Function to open the modal
-    function openModal() {
-      contactModal.style.display = 'block';
-    }
+      // Function to open the modal
+      function openModal() {
+        contactModal.style.display = 'block';
+      }
 
-    // Function to close the modal
-    function closeModal() {
-      contactModal.style.display = 'none';
-    }
+      // Function to close the modal
+      function closeModal() {
+        contactModal.style.display = 'none';
+      }
 
-    // Event listener to open the modal
-    openModalBtn.addEventListener('click', openModal);
+      // Event listener to open the modal
+      openModalBtn.addEventListener('click', openModal);
 
-    // Event listener to close the modal
-    closeModalBtn.addEventListener('click', closeModal);
+      // Event listener to close the modal
+      closeModalBtn.addEventListener('click', closeModal);
 
-    // Event listener for form submission
-    contactForm.addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent default form submission
+      // Event listener for form submission
+      contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
 
-      // Collect form data
-      var formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value
-      };
+        // Collect form data
+        var formData = {
+          name: document.getElementById('name').value,
+          email: document.getElementById('email').value
+        };
 
-      // Store form data in session storage (for temporary storage)
-      sessionStorage.setItem('formData', JSON.stringify(formData));
-
-      // Redirect to another custom page
-      // window.location.href = '/pages/display-form-data'; // Change to your target custom page URL
+        // Store form data in session storage (for temporary storage)
+        sessionStorage.setItem('formData', JSON.stringify(formData));
+  closeModal();
+        // Redirect to another custom page
+        // window.location.href = '/pages/display-form-data'; // Change to your target custom page URL
+      });
     });
-  });
 </script>
 
 <style>
