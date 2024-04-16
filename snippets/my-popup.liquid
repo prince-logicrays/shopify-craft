@@ -23,41 +23,40 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    // Get modal elements
-    var modal = document.getElementById('contactModal');
-    var openModalBtn = document.getElementById('openModalBtn');
-    var closeModalBtn = document.getElementById('closeModalBtn');
-    var contactForm = document.getElementById('contactForm');
+      document.addEventListener('DOMContentLoaded', function() {
+      // Get modal elements
+      var openModalBtn = document.getElementById('openModalBtn');
+      var closeModalBtn = document.getElementById('closeModalBtn');
+      var contactModal = document.getElementById('contactModal');
+      var contactForm = document.getElementById('contactForm');
 
-    // Open modal function
-    function openModal() {
-      modal.style.display = 'block';
-    }
+      console.log(openModalBtn, closeModalBtn, contactModal, contactForm); // Debug: Check element values
 
-    // Close modal function
-    function closeModal() {
-      modal.style.display = 'none';
-    }
+      // Add event listeners if elements exist
+      if (openModalBtn && closeModalBtn && contactModal && contactForm) {
+          openModalBtn.addEventListener('click', function() {
+              contactModal.style.display = 'block';
+          });
 
-    // Event listeners to open/close modal
-    openModalBtn.addEventListener('click', openModal);
-    closeModalBtn.addEventListener('click', closeModal);
-    window.addEventListener('click', function(event) {
-      if (event.target == modal) {
-        closeModal();
+          closeModalBtn.addEventListener('click', function() {
+              contactModal.style.display = 'none';
+          });
+
+          window.addEventListener('click', function(event) {
+              if (event.target === contactModal) {
+                  contactModal.style.display = 'none';
+              }
+          });
+
+          contactForm.addEventListener('submit', function(event) {
+              event.preventDefault(); // Prevent default form submission
+
+              // Handle form submission (e.g., AJAX)
+              console.log('Form submitted'); // Debug: Check form submission
+          });
+      } else {
+          console.error('One or more elements not found'); // Debug: Log error if elements are not found
       }
-    });
-
-    // Handle form submission
-    contactForm.addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent default form submission
-
-      // Collect form data
-      var formData = new FormData(contactForm);
-      console.log(formData);
-
-    });
   });
 </script>
 
