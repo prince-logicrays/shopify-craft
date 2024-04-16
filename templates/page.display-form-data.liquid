@@ -5,15 +5,16 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     // Retrieve form data from session storage
-    var formDataJSON = sessionStorage.getItem('formData');
-    if (formDataJSON) {
-      var formData = JSON.parse(formDataJSON);
-
-      // Display form data
-      var formDataDisplay = document.getElementById('formDataDisplay');
-      formDataDisplay.innerHTML = '<h2>Form Data:</h2>' +
-                                   '<p><strong>Name:</strong> ' + formData.name + '</p>' +
-                                   '<p><strong>Email:</strong> ' + formData.email + '</p>';
-    }
+      var formDataJSON = localStorage.getItem('formData');
+      if (formDataJSON) {
+        var formData = JSON.parse(formDataJSON);
+        var formDataHTML = '<h2>Form Data:</h2>';
+        formDataHTML += '<ul>';
+        formDataHTML += '<li><strong>Name:</strong> ' + formData.name + '</li>';
+        formDataHTML += '<li><strong>Email:</strong> ' + formData.email + '</li>';
+        formDataHTML += '<li><strong>Message:</strong> ' + formData.message + '</li>';
+        formDataHTML += '</ul>';
+        formDataDisplay.innerHTML = formDataHTML;
+      }
   });
 </script>
