@@ -22,10 +22,21 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    var openModalBtn = document.getElementById('openModalBtn');
-    var closeModalBtn = document.getElementById('closeModalBtn');
-    var contactModal = document.getElementById('contactModal');
-    var contactForm = document.getElementById('contactForm');
+      // Function to display form data from localStorage
+      function displayFormData() {
+        var formDataJSON = localStorage.getItem('formData');
+        if (formDataJSON) {
+          var formData = JSON.parse(formDataJSON);
+          var formDataHTML = '<h2>Form Data:</h2>';
+          formDataHTML += '<ul>';
+          formDataHTML += '<li><strong>Name:</strong> ' + formData.name + '</li>';
+          formDataHTML += '<li><strong>Email:</strong> ' + formData.email + '</li>';
+          formDataHTML += '<li><strong>Message:</strong> ' + formData.message + '</li>';
+          formDataHTML += '</ul>';
+          formDataDisplay.innerHTML = formDataHTML;
+        }
+      }
+
 
     // Function to open the modal
     function openModal() {
