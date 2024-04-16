@@ -77,6 +77,12 @@
 
       // Store form data in session storage (for temporary storage)
       sessionStorage.setItem('formData', JSON.stringify(formData));
+
+      // Display form data
+      displayFormData();
+
+        // Close the modal after form submission
+        closeModal();
       // Redirect to another custom page
       // window.location.href = '/pages/display-form-data'; // Change to your target custom page URL
     });
