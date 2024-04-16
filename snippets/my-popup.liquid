@@ -105,6 +105,7 @@
               value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}"
             >
           </div>
+          <br>
 
           <div class="grid__item medium-up--one-half">
             <label for="ContactFormEmail" class="{% if form.errors contains 'email' %}label--error{% endif %}">
