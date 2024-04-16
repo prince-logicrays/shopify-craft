@@ -25,73 +25,73 @@
 <div id="formDataDisplay"></div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var openModalBtn = document.getElementById('openModalBtn');
-    var closeModalBtn = document.getElementById('closeModalBtn');
-    var contactModal = document.getElementById('contactModal');
-    var contactForm = document.getElementById('contactForm');
-    var formDataDisplay = document.getElementById('formDataDisplay');
-
-    // Function to open the modal
-    function openModal() {
-      contactModal.style.display = 'block';
-    }
-
-    // Function to close the modal
-    function closeModal() {
-      contactModal.style.display = 'none';
-    }
-
-    // Function to display form data from localStorage
-    function displayFormData() {
-      var formDataJSON = localStorage.getItem('formData');
-      if (formDataJSON) {
-        var formData = JSON.parse(formDataJSON);
-        var formDataHTML = '<h2>Form Data:</h2>';
-        formDataHTML += '<ul>';
-        formDataHTML += '<li><strong>Name:</strong> ' + formData.name + '</li>';
-        formDataHTML += '<li><strong>Email:</strong> ' + formData.email + '</li>';
-        formDataHTML += '<li><strong>Message:</strong> ' + formData.message + '</li>';
-        formDataHTML += '</ul>';
-        formDataDisplay.innerHTML = formDataHTML;
+      document.addEventListener('DOMContentLoaded', function() {
+      var openModalBtn = document.getElementById('openModalBtn');
+      var closeModalBtn = document.getElementById('closeModalBtn');
+      var contactModal = document.getElementById('contactModal');
+      var contactForm = document.getElementById('contactForm');
+      var formDataDisplay = document.getElementById('formDataDisplay');
+  2
+      // Function to open the modal
+      function openModal() {
+        contactModal.style.display = 'block';
       }
-    }
 
-    // Event listener to open the modal
-    openModalBtn.addEventListener('click', openModal);
+      // Function to close the modal
+      function closeModal() {
+        contactModal.style.display = 'none';
+      }
 
-    // Event listener to close the modal
-    closeModalBtn.addEventListener('click', closeModal);
+      // Function to display form data from localStorage
+      function displayFormData() {
+        var formDataJSON = localStorage.getItem('formData');
+        if (formDataJSON) {
+          var formData = JSON.parse(formDataJSON);
+          var formDataHTML = '<h2>Form Data:</h2>';
+          formDataHTML += '<ul>';
+          formDataHTML += '<li><strong>Name:</strong> ' + formData.name + '</li>';
+          formDataHTML += '<li><strong>Email:</strong> ' + formData.email + '</li>';
+          formDataHTML += '<li><strong>Message:</strong> ' + formData.message + '</li>';
+          formDataHTML += '</ul>';
+          formDataDisplay.innerHTML = formDataHTML;
+        }
+      }
 
-    // Event listener for form submission
-    contactForm.addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent default form submission
+      // Event listener to open the modal
+      openModalBtn.addEventListener('click', openModal);
 
-      // Collect form data using FormData
-      var formData = new FormData(contactForm);
+      // Event listener to close the modal
+      closeModalBtn.addEventListener('click', closeModal);
 
-      // Convert FormData to plain object
-      var formDataObject = {};
-      formData.forEach(function(value, key) {
-        formDataObject[key] = value;
+      // Event listener for form submission
+      contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Collect form data using FormData
+        var formData = new FormData(contactForm);
+
+        // Convert FormData to plain object
+        var formDataObject = {};
+        formData.forEach(function(value, key) {
+          formDataObject[key] = value;
+        });
+  console.log(formDataObject);
+        // Save form data to localStorage
+        localStorage.setItem('formData', JSON.stringify(formDataObject));
+
+        // Display form data
+        displayFormData();
+
+        // Close the modal after form submission
+        closeModal();
+
+        // Reset form fields (optional)
+        contactForm.reset();
       });
 
-      // Save form data to localStorage
-      localStorage.setItem('formData', JSON.stringify(formDataObject));
-
-      // Display form data
+      // Display form data on page load
       displayFormData();
-
-      // Close the modal after form submission
-      closeModal();
-
-      // Reset form fields (optional)
-      contactForm.reset();
     });
-
-    // Display form data on page load
-    displayFormData();
-  });
 </script>
 
 <style>
