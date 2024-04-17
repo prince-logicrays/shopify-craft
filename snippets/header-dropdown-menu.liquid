@@ -42,7 +42,7 @@
                           aria-current="page"
                         {% endif %}
                       >
-                        {{ childlink }}
+                        {{ childlink | json }}
 
                         {{ childlink.title | escape }}
                       </a>
