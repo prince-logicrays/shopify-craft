@@ -67,7 +67,7 @@
                                   aria-current="page"
                                 {% endif %}
                               >
-                                {{ grandchildlink }}
+                                <pre>{{ grandchildlink | json }}</pre>
                                 {{ grandchildlink.title | escape }}
                               </a>
                             </li>
