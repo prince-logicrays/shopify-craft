@@ -69,6 +69,15 @@
                               >
                                 {{ grandchildlink.title | escape }}
                               </a>
+                              {%- if grandchildlink.product_handle -%}
+                                {% assign product = all_products[grandchildlink.product_handle] %}
+                                {% if product and product.featured_image %}
+                                  <img
+                                    src="{{ product.featured_image.src | img_url: '300x' }}"
+                                    alt="{{ product.title | escape }}"
+                                  >
+                                {% endif %}
+                              {%- endif -%}
                             </li>
                           {%- endfor -%}
                         </ul>
