@@ -44,13 +44,13 @@
                       >
 
                       {%- assign url_segments = childlink.url | split: '/' -%}
-                      {% if 'products' | in: url_segments %}
+                      {% comment %} {% if 'products' | in: url_segments %}
                         {%- assign product_handle = childlink.url | split: '/' | last -%}
                         {%- assign product = all_products[product_handle] -%}
                           {%- if product and product.featured_image -%}
                             <img src="{{ product.featured_image.src | img_url: 'medium' }}" alt="{{ product.title | escape }}" width="100" height="100">
                           {%- endif -%}
-                      {% endif %}
+                      {% endif %} {% endcomment %}
 
                         {{ childlink.title | escape }}
                       </a>
