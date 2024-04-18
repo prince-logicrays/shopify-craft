@@ -50,7 +50,6 @@
                         {%- if segment == 'products' -%}
                           {%- assign contains_products = true -%}
                           {{ contains_products }}
-                          {%- break -%}
                         {% endif %}
                       {%- endfor -%}
                       {% comment %} {% if 'products' | in: url_segments %}
