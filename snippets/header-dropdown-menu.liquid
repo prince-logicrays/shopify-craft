@@ -44,6 +44,13 @@
                       >
 
                       {%- assign url_segments = childlink.url | split: '/' -%}
+                        {%- for segment in url_segments -%}
+                          {%- if segment == 'products' -%}
+                            {%- assign contains_products = true -%}
+                            {%- break -%}
+                          {%- endif -%}
+                        {%- endfor -%}
+
                       {% if 'products' | in: url_segments %}
                         {% comment %} {%- assign product_handle = childlink.url | split: '/' | last -%}
                         {%- assign product = all_products[product_handle] -%}
