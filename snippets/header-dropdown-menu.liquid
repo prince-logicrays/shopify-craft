@@ -58,7 +58,7 @@
                         {% endif %}
                       {%- endfor -%}
 
-                        {% comment %} {{ childlink.title | escape }} {% endcomment %}
+                      {{ childlink.title | escape }}
                       </a>
                     {%- else -%}
                       <details id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">
