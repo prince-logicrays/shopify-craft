@@ -44,11 +44,10 @@
                       >
                         {%- assign product_handle = childlink.url | split: '/' | last -%}
                         {%- assign product = all_products[product_handle] -%}
-                        {{ product.featured_image.src | img_url: 'medium' }}
-                        {% comment %} {%- if product and product.featured_image -%}
+                        {%- if product and product.featured_image -%}
                           <img src="{{ product.featured_image.src | img_url: 'medium' }}" alt="{{ product.title | escape }}" width="100" height="100">
-                        {%- endif -%} {% endcomment %}
-                        {% comment %} {{ childlink.title | escape }} {% endcomment %}
+                        {%- endif -%}
+                        {{ childlink.title | escape }}
                       </a>
                     {%- else -%}
                       <details id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">
