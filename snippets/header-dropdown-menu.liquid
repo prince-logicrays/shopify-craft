@@ -44,7 +44,9 @@
                       >
 
                       {%- assign url_segments = childlink.url | split: '/' -%}
-                      {{ 'products' | in: url_segments | escape }}
+                      {% if 'products' | in: url_segments | escape %}
+                        {{ '111' }}
+                      {% endif %}
                       {% comment %} {% if 'products' | in: url_segments %}
                         {%- assign product_handle = childlink.url | split: '/' | last -%}
                         {%- assign product = all_products[product_handle] -%}
