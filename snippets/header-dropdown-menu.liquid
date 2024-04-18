@@ -44,6 +44,7 @@
                       >
 
                       {%- assign url_segments = childlink.url | split: '/' -%}
+                      {{ url_segments | escape }}
                       {% comment %} {% if 'products' | in: url_segments %}
                         {%- assign product_handle = childlink.url | split: '/' | last -%}
                         {%- assign product = all_products[product_handle] -%}
@@ -52,7 +53,7 @@
                           {%- endif -%}
                       {% endif %} {% endcomment %}
 
-                        {{ childlink.title | escape }}
+                        {% comment %} {{ childlink.title | escape }} {% endcomment %}
                       </a>
                     {%- else -%}
                       <details id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">
