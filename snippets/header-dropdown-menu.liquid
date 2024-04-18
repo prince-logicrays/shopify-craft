@@ -42,12 +42,12 @@
                           aria-current="page"
                         {% endif %}
                       >
-                        {{ childlink.title | escape }}
                         {%- assign product_handle = childlink.url | split: '/' | last -%}
                         {%- assign product = all_products[product_handle] -%}
                         {%- if product and product.featured_image -%}
                           <img src="{{ product.featured_image.src | img_url: 'medium' }}" alt="{{ product.title | escape }}">
                         {%- endif -%}
+                        {{ childlink.title | escape }}
                       </a>
                     {%- else -%}
                       <details id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">
