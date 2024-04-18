@@ -48,7 +48,7 @@
                         {%- if product and product.featured_image -%}
                           <img src="{{ product.featured_image.src | img_url: 'medium' }}" alt="{{ product.title | escape }}" width="100" height="100">
                         {%- endif -%} {% endcomment %}
-                        {{ childlink.title | escape }}
+                        {% comment %} {{ childlink.title | escape }} {% endcomment %}
                       </a>
                     {%- else -%}
                       <details id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">
