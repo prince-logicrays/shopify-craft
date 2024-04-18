@@ -52,7 +52,7 @@
                           {%- endif -%}
                       {% endif %}
 
-                      {% if 'products' | in: url_segments %}
+                      {% if 'collections' | in: url_segments %}
                         {%- assign product_handle = childlink.url | split: '/' | last -%}
                         {%- assign product = all_products[product_handle] -%}
                           {%- if product and product.featured_image -%}
