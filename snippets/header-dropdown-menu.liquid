@@ -43,7 +43,7 @@
                         {% endif %}
                       >
 
-                      {% comment %} Add products and collection images to mega menu {% endcomment %}
+                      {% comment %} Add products images to mega menu {% endcomment %}
                       {%- assign url_segments = childlink.url | split: '/' -%}
 
                       {%- assign contains_products = false -%}
@@ -59,6 +59,7 @@
                         {% endif %}
                       {%- endfor -%}
 
+                      {% comment %} Add collection images to mega menu {% endcomment %}
                       {%- assign contains_collections = false -%}
                       {%- for segment in url_segments -%}
                         {%- if segment == 'collections' -%}
