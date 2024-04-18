@@ -42,8 +42,7 @@
                           aria-current="page"
                         {% endif %}
                       >
-                        {%- assign product_handle = childlink.url | split: '/' | last -%}
-                        {{ product_handle | escape }}
+                        {{ childlink.url }}
                         {% comment %} {%- assign product_handle = childlink.url | split: '/' | last -%}
                         {%- assign product = all_products[product_handle] -%}
                         {%- if product and product.featured_image -%}
