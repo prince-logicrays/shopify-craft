@@ -58,9 +58,7 @@
                         {% endif %}
                       {%- endfor -%}
 
-                      {%- assign url_segments = childlink.url | split: '/' -%}
                       {%- assign contains_collections = false -%}
-                      
                       {%- for segment in url_segments -%}
                         {%- if segment == 'collections' -%}
                           {%- assign contains_collections = true -%}
