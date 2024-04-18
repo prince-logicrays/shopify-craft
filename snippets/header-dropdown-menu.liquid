@@ -46,10 +46,10 @@
                       {% comment %} Add products images to mega menu {% endcomment %}
                       {%- assign url_segments = childlink.url | split: '/' -%}
 
-                      {%- assign contains_products = false -%}
+                      {% comment %} {%- assign contains_products = false -%} {% endcomment %}
                       {%- for segment in url_segments -%}
                         {%- if segment == 'products' -%}
-                          {%- assign contains_products = true -%}
+                          {% comment %} {%- assign contains_products = true -%} {% endcomment %}
                           {%- assign product_handle = url_segments | last -%}
                           {%- assign product = all_products[product_handle] -%}
                             {%- if product and product.featured_image -%}
@@ -60,10 +60,10 @@
                       {%- endfor -%}
 
                       {% comment %} Add collection images to mega menu {% endcomment %}
-                      {%- assign contains_collections = false -%}
+                      {% comment %} {%- assign contains_collections = false -%} {% endcomment %}
                       {%- for segment in url_segments -%}
                         {%- if segment == 'collections' -%}
-                          {%- assign contains_collections = true -%}
+                          {% comment %} {%- assign contains_collections = true -%} {% endcomment %}
                           {%- assign collection_handle = url_segments | last -%}
                           {%- assign collection = collections[collection_handle] -%}
                           {%- if collection and collection.image -%}
