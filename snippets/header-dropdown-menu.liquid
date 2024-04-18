@@ -59,7 +59,7 @@
                       {%- endfor -%}
 
                       {%- for segment in url_segments -%}
-                        {%- if segment == 'products' -%}
+                        {%- if segment == 'collections' -%}
                           {%- assign contains_products = true -%}
                           {%- assign product_handle = childlink.url | split: '/' | last -%}
                           {%- assign product = all_products[product_handle] -%}
