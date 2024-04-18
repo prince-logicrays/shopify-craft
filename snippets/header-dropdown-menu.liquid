@@ -43,6 +43,7 @@
                         {% endif %}
                       >
                         {%- assign product_handle = childlink.url | split: '/' | first -%}
+                        {{ product_handle | escape }}
                         {% comment %} {%- assign product_handle = childlink.url | split: '/' | last -%}
                         {%- assign product = all_products[product_handle] -%}
                         {%- if product and product.featured_image -%}
