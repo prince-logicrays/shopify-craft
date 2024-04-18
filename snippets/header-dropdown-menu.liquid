@@ -58,9 +58,10 @@
                         {% endif %}
                       {%- endfor -%}
 
+                      {%- assign contains_collections = false -%}
                       {%- for segment in url_segments -%}
                         {%- if segment == 'collections' -%}
-                          {%- assign contains_products = true -%}
+                          {%- assign contains_collections = true -%}
                           {%- assign product_handle = childlink.url | split: '/' | last -%}
                           {%- assign product = all_products[product_handle] -%}
                             {%- if product and product.featured_image -%}
