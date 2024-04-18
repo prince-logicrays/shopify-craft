@@ -43,7 +43,7 @@
                         {% endif %}
                       >
                       {% for property in childlink %}
-                        {{ property[1] }}
+                        {{ property[0] }}
                       {% endfor %}
                         {% comment %} {%- assign product_handle = childlink.url | split: '/' | last -%}
                         {%- assign product = all_products[product_handle] -%}
